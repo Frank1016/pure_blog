@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "708068745033",
+    "firebase_url": "https://pureblog-7d249-default-rtdb.firebaseio.com",
+    "project_id": "pureblog-7d249",
+    "storage_bucket": "pureblog-7d249.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:708068745033:android:ef36842aa1b49ae8cdc498",
+        "android_client_info": {
+          "package_name": "com.example.pure_blog"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "708068745033-jjfr9u71gp8oaqmegsq5tap2h4hds7im.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgsUhOgIFRt8-8-tLLWgEAK7llTBX_3Ns"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "708068745033-jjfr9u71gp8oaqmegsq5tap2h4hds7im.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "708068745033-dtukul77ic2v2vfmqfsd2ta9rahdkm9l.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.pureBlog"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
