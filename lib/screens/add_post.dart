@@ -99,8 +99,11 @@ class _AddPostState extends State<AddPost> {
           PostService(post.toMap() as Map<String, Object?>);
       postService.addPost();
 
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => HomePage()));
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => HomePage()),
+        (Route<dynamic> route) => false,
+      );
     }
   }
 }

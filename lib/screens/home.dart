@@ -105,15 +105,19 @@ class _HomePageState extends State<HomePage> {
   }
 
   _childAdded(event) {
-    setState(() {
-      postsList.add(Post.fromSnapshot(event.snapshot));
-    });
+    if (this.mounted) {
+      setState(() {
+        postsList.add(Post.fromSnapshot(event.snapshot));
+      });
+    }
   }
 
   void _childRemoves(DatabaseEvent event) {
-    setState(() {
-      // postsList
-      //     .removeWhere((post) => post.key == event.snapshot.key);
-    });
+    if (this.mounted) {
+      setState(() {
+        // postsList
+        //     .removeWhere((post) => post.key == event.snapshot.key);
+      });
+    }
   }
 }
