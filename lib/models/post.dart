@@ -24,11 +24,12 @@ class Post {
         date = (snap.value as Map<String, dynamic>?)?[DATE] ?? '',
         title = (snap.value as Map<String, dynamic>?)?[TITLE] ?? '';
 
-  Map toMap() {
+  Map<String, Object?> toMap() {
     return {
       BODY: body,
       TITLE: title,
       DATE: date,
+      KEY: key,
     };
   }
 }

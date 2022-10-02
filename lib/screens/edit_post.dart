@@ -1,24 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:pure_blog/db/post_service.dart';
-import 'package:pure_blog/screens/home.dart';
 
+import '../db/post_service.dart';
 import '../models/post.dart';
+import 'home.dart';
 
-class AddPost extends StatefulWidget {
-  const AddPost({super.key});
+class EditPost extends StatefulWidget {
+  final Post post;
+  const EditPost({super.key, required this.post});
 
   @override
-  State<AddPost> createState() => _AddPostState();
+  State<EditPost> createState() => _EditPostState();
 }
 
-class _AddPostState extends State<AddPost> {
+class _EditPostState extends State<EditPost> {
   final formkey = GlobalKey<FormState>();
-  late Post post;
-
-  @override
-  void initState() {
-    post = Post('', '', '', '');
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +21,7 @@ class _AddPostState extends State<AddPost> {
       appBar: AppBar(
         elevation: 0.0,
         backgroundColor: Theme.of(context).primaryColor,
-        title: Text('add post'),
+        title: Text('edit post'),
       ),
       body: Form(
         key: formkey,
@@ -35,9 +30,10 @@ class _AddPostState extends State<AddPost> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
+                initialValue: widget.post.title,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 onSaved: ((newValue) {
-                  post.title = newValue;
+                  widget.post.title = newValue;
                 }),
                 decoration: InputDecoration(
                     labelText: 'Post title', border: OutlineInputBorder()),
@@ -54,9 +50,10 @@ class _AddPostState extends State<AddPost> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
+                initialValue: widget.post.body,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 onSaved: (newValue) {
-                  post.body = newValue;
+                  widget.post.body = newValue;
                 },
                 decoration: InputDecoration(
                   labelText: 'Post body',
@@ -75,32 +72,35 @@ class _AddPostState extends State<AddPost> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          insertPost();
+          updatePost();
           //Navigator.pop(context);
         },
         backgroundColor: Colors.red,
-        tooltip: 'add this post',
+        tooltip: 'update the post',
         child: const Icon(
-          Icons.add,
+          Icons.publish,
           color: Colors.white,
         ),
       ),
     );
   }
 
-  void insertPost() {
+  void updatePost() {
     final FormState form = formkey.currentState as FormState;
 
     if (form.validate()) {
       form.save();
       form.reset();
-      post.date = DateTime.now().microsecondsSinceEpoch.toString();
+      widget.post.date = DateTime.now().microsecondsSinceEpoch.toString();
       PostService postService =
-          PostService(post.toMap() as Map<String, Object?>);
-      postService.addPost();
+          PostService(widget.post.toMap() as Map<String, Object?>);
+      postService.updatePost();
 
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => HomePage()));
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => HomePage()),
+        (Route<dynamic> route) => false,
+      );
     }
   }
 }
