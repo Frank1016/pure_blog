@@ -1,6 +1,6 @@
 # pure_blog
 
-A new Flutter project.
+A pure and simple blog site. Demo link: https://pureblog-7d249.web.app
 
 ## Getting Started
 
